@@ -113,3 +113,20 @@ export default App;
 ```
 
 Check out this [Live Demo](https://stackblitz.com/edit/vitejs-vite-b6zuds?file=src%2FApp.tsx).
+
+
+## HOW to set up with Smart UI 
+
+1.Install and setup stencil according to this : https://stenciljs.com/docs/getting-started
+2.Setup Storybook with stencil by following this : https://ionic.io/blog/how-to-use-storybook-with-stencil
+3. After which we were facing the JMX issue , to resolve it :
+      Step 1: go to node_modules\@types\mdx\types.d.ts
+      Step 2 : Add this in the beginning :  import { JSX } from '@stencil/core';
+      Step 3:  And replace line no: 49 (? new(props: Props) => JSX.ElementClass) with ? new(props: Props) => any
+     Step 4: rebuild storybook : npm run build
+4. Add stencil component to storybook : The same doc as above  https://ionic.io/blog/how-to-use-storybook-with-stencil
+5. install smart ui storybook sdk : npm install @LambdaTest/smartui-storybook -g
+6.create .smartui.json file : smartui config create .smartui.json 
+7.Create a static build of storybook : npm run build-storybook 
+8.  add project token to env variables
+9. Run smart UI test : smartui storybook ./storybook-static --config .smartui.json
